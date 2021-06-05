@@ -56,3 +56,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${GITHUB_REF##*/}
+      - run: kubectl set image deploy my-deployment-name ${{ secrets.DOCKERHUB_IMAGE }}=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE }}:${GITHUB_REF##*/}
+
