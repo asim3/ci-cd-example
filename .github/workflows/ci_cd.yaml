@@ -36,6 +36,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+  build_and_push:
+    needs: set_up_docker
+    runs-on: ubuntu-latest
+    steps:
       - id: tag_name
         run: |
           if [[ ${GITHUB_REF%/*} = "refs/tags" ]]; then
@@ -44,10 +48,6 @@ jobs:
             echo "::set-output name=value::latest"
           fi
 
-  build_and_push:
-    needs: set_up_docker
-    runs-on: ubuntu-latest
-    steps:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
