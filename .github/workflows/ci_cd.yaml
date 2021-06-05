@@ -60,4 +60,5 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
-      - run: kubectl set image deploy my-deployment-name ${{ secrets.DOCKERHUB_IMAGE }}=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE }}:${GITHUB_REF##*/}
+      - run: kubectl -n ${{ secrets.KUBE_NAMESPACE }} set image deploy my-deployment-name ${{ secrets.DOCKERHUB_IMAGE }}=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE }}:${GITHUB_REF##*/}
+      
