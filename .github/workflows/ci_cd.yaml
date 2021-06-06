@@ -30,10 +30,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
           
-      - run: pip -V
-      - run: cd my_name/
-      - run: pip install -r requirements.txt
-      - run: python manage.py test
+      - run: cd my_name/ && pip install -r requirements.txt
+      - run: cd my_name/ && python manage.py test
 
 
   build_and_push:
