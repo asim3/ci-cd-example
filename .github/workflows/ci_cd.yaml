@@ -31,8 +31,8 @@ jobs:
           architecture: 'x64'
           
       - run: pip -V
-      - run: pip install -r requirements.txt
       - run: cd my_name/
+      - run: pip install -r requirements.txt
       - run: python manage.py test
 
 
