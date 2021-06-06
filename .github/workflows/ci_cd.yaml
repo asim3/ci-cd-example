@@ -1,4 +1,10 @@
 name: CI-CD
+# secrets.KUBE_CONFIG
+# secrets.KUBE_NAMESPACE
+
+# secrets.DOCKERHUB_USERNAME
+# secrets.DOCKERHUB_IMAGE
+# secrets.DOCKERHUB_TOKEN
 
 on:
   push:
@@ -69,3 +75,4 @@ jobs:
           kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
       - run: kubectl -n ${{ secrets.KUBE_NAMESPACE }} set image deploy my-deployment-name ${{ secrets.DOCKERHUB_IMAGE }}=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_IMAGE }}:${{ steps.tag_name.outputs.value }}
+      
